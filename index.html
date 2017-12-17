@@ -2,8 +2,18 @@
 <html>
 <head>
     <title> </title>
+    <script src="scripts/codemirror.js"></script>
+    <link rel="stylesheet" href="styles/codemirror.css">
+    <script src="scripts/xml.js"></script>
+    
 </head>
 <body>
-
+    <textarea id="Fetch"></textarea>
+    <script>
+        CodeMirror.fromTextArea(document.getElementById("Fetch"), {
+            mode: "xml",
+            lineNumbers: true
+        });
+    </script>
 </body>
 </html>
