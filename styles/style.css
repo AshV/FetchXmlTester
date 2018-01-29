@@ -6,16 +6,12 @@ html, body {
 textarea {
     height: 98%;
     resize: none;
+	   color: #ebccff;
 }
 
 h1 {
     line-height: 50%;
 }
-
-.row {
-    height: 80%;
-}
-
 
 ::-webkit-input-placeholder { /* Chrome */
     color: #ebccff;

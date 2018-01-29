@@ -14,7 +14,7 @@
     <script src="scripts/xml.js"></script>
 </head>
 <body>
-    <div class="row">
+    <div class="row" style="height:50%">
         <div class="column column-25" style="position:relative">
             <font color="red">Work In Progress</font>
             <h1></h1>
@@ -22,7 +22,6 @@
             <h1>&lt;tester<font color="#9b4dca">/</font>&gt;</h1>
             <h1>&lt;online<font color="#9b4dca">/</font>&gt;</h1>
             <h5>&nbsp;&nbsp;For Dynamics 365 Users</h5>
-            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FFetchXmlFormatterOnline%2F&width=63&layout=box_count&action=like&size=large&show_faces=true&share=true&height=65&appId=704915973052339" width="63" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
             <div style="bottom:0px; position:absolute;">
                 <a class="github-button" href="https://github.com/AshV" data-size="large" data-show-count="true" aria-label="Follow @AshV on GitHub">Follow @AshV</a>
                 <a class="github-button" href="https://github.com/AshV/FetchXmlFormatter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star AshV/FetchXmlFormatter on GitHub">Star</a>
@@ -47,14 +46,29 @@
 &lt;/fetch&gt;  " wrap="off" autofocus></textarea>
         </div>
     </div>
+	 <div class="row">
+        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
+            <textarea class="btn" data-clipboard-target="#cs" id="cs" placeholder="C# formatted syntax appears here." wrap="off" readonly></textarea>
+        </div>
+        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
+            <textarea class="btn" data-clipboard-target="#js" id="js" placeholder="JavaScript formatted syntax appears here." wrap="off" readonly></textarea>
+        </div>
+        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
+            <textarea class="btn" data-clipboard-target="#jsLint" id="jsLint" placeholder="JavaScript formatted JSlint safe syntax appears here." wrap="off" readonly></textarea>
+        </div>
+        <div style="bottom:0px; position:absolute;font-size:small;right:25px">
+            <b>FetchXml Formatter Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlFormatter">GitHub</a>
+        </div>
+    </div>
     <script>
-        CodeMirror.fromTextArea(document.getElementById("src"), {
+	// Commenting CodeMirror for now
+       /* var cm =CodeMirror.fromTextArea(document.getElementById("src"), {
             mode: "xml",
             lineNumbers: true
-        });
+        }); */
     </script>
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <script>    (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-88171590-1', 'auto'); ga('send', 'pageview');</script>
+    <script>(function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-88171590-1', 'auto'); ga('send', 'pageview');</script>
 </body>
 </html>
