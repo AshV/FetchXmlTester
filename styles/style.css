@@ -3,10 +3,9 @@ html, body {
     width: 99%;
 }
 
-textarea {
-    height: 98%;
+textarea, input {
     resize: none;
-	   color: #ebccff;
+    color: #ebccff;
 }
 
 h1 {
@@ -23,10 +22,10 @@ h1 {
 
 ::-moz-placeholder { /* Firefox 19+ */
     color: #ebccff;
-    opacity: 1;
+    opacity: 2;
 }
 
 :-moz-placeholder { /* Firefox 4 - 18 */
     color: #ebccff;
-    opacity: 1;
+    opacity: 2;
 }

@@ -9,20 +9,19 @@
     <link rel="stylesheet" type="text/css" href="styles/milligram.min.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" href="styles/balloon.min.css" />
-    <script src="scripts/codemirror.js"></script>
-    <link rel="stylesheet" href="styles/codemirror.css">
-    <script src="scripts/xml.js"></script>
 </head>
 <body>
     <div class="row" style="height:50%">
         <div class="column column-25" style="position:relative">
-            <font color="red">Work In Progress</font>
+            <!--<font color="red">Work In Progress</font>-->
             <h1></h1>
             <h1>&lt;fetchXml<font color="#9b4dca">/</font>&gt;</h1>
             <h1>&lt;tester<font color="#9b4dca">/</font>&gt;</h1>
             <h1>&lt;online<font color="#9b4dca">/</font>&gt;</h1>
-            <h5>&nbsp;&nbsp;For Dynamics 365 Users</h5>
+            <h6>&nbsp;&nbsp;For Dynamics 365 Users</h6>
             <div style="bottom:0px; position:absolute;">
+                <a href="https://www.ashishvishwakarma.com/posts/">Read my articles!</a>
+                <br />
                 <a class="github-button" href="https://github.com/AshV" data-size="large" data-show-count="true" aria-label="Follow @AshV on GitHub">Follow @AshV</a>
                 <a class="github-button" href="https://github.com/AshV/FetchXmlFormatter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star AshV/FetchXmlFormatter on GitHub">Star</a>
                 <br />
@@ -30,8 +29,8 @@
                 <br />
             </div>
         </div>
-        <div class="column column-75">
-            <textarea id="src" placeholder="Paste your fetchXML here.
+        <div class="column column-75" data-balloon="Paste your fetchXml here to test." data-balloon-pos="left">
+            <textarea style="height: 98%" id="fetchXml" placeholder="Paste your fetchXML here.
 
 &lt;fetch mapping=&apos;logical&apos;&gt;
    &lt;entity name=&apos;account&apos;&gt;
@@ -46,28 +45,31 @@
 &lt;/fetch&gt;  " wrap="off" autofocus></textarea>
         </div>
     </div>
-	 <div class="row">
-        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
-            <textarea class="btn" data-clipboard-target="#cs" id="cs" placeholder="C# formatted syntax appears here." wrap="off" readonly></textarea>
+    <div class="row">
+        <div class="column column-75" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
+            <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
         </div>
-        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
-            <textarea class="btn" data-clipboard-target="#js" id="js" placeholder="JavaScript formatted syntax appears here." wrap="off" readonly></textarea>
-        </div>
-        <div class="column column-30" data-balloon="Click To Copy." data-balloon-pos="up">
-            <textarea class="btn" data-clipboard-target="#jsLint" id="jsLint" placeholder="JavaScript formatted JSlint safe syntax appears here." wrap="off" readonly></textarea>
-        </div>
-        <div style="bottom:0px; position:absolute;font-size:small;right:25px">
-            <b>FetchXml Formatter Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlFormatter">GitHub</a>
+        <div class="column column-25" data-balloon="Plural name of entity, please fill if not alredy populated." data-balloon-pos="left">
+            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" wrap="off"></input>
         </div>
     </div>
-    <script>
-	// Commenting CodeMirror for now
-       /* var cm =CodeMirror.fromTextArea(document.getElementById("src"), {
-            mode: "xml",
-            lineNumbers: true
-        }); */
-    </script>
-
+    <div class="row" style="height:40%">
+        <div class="column column-50">
+            <textarea data-clipboard-target="#requestURI" style="height:30%"></textarea>
+            <textarea data-clipboard-target="#requestURI" style="height:60%"></textarea>
+        </div>
+        <div class="column column-50">
+            <input style="width:100%;height:20%" class="btn" value="Test FetchXML and Generate Request URI" type="submit" />
+            <br />
+            <textarea data-clipboard-target="#requestURI" style="height:70%"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div style="bottom:0px; position:absolute;font-size:small;right:25px">
+            <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
+        </div>
+    </div>
+    <script src="scripts/script.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>(function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-88171590-1', 'auto'); ga('send', 'pageview');</script>
 </body>
