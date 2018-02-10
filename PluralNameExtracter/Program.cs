@@ -18,7 +18,7 @@ namespace PluralNameExtracter
         {
             var loginUri = "https://18jan18.crm.dynamics.com";
             var userName = "18jan18@18jan18.onmicrosoft.com";
-            var password = "#";
+            var password = "Trial#Env1";
             var conn = new CrmServiceClient($@"Url={loginUri}; Username={userName}; Password={password}; authtype=Office365");
             var orgService = conn.OrganizationWebProxyClient != null ? conn.OrganizationWebProxyClient : (IOrganizationService)conn.OrganizationServiceProxy;
 
@@ -31,10 +31,14 @@ namespace PluralNameExtracter
             RetrieveAllEntitiesResponse response = (RetrieveAllEntitiesResponse)orgService.Execute(request);
 
             var pluralList = new List<KeyValuePair<string, string>>();
+            var plurals = "var plurals={";
             foreach (var data in response.EntityMetadata)
-                pluralList.Add(new KeyValuePair<string, string>(data.SchemaName, data.CollectionSchemaName));
+                if (!string.IsNullOrEmpty(data.CollectionSchemaName))
+                    plurals += $"\"{data.SchemaName}\":\"{data.CollectionSchemaName}\",";
+            // pluralList.Add(new KeyValuePair<string, string>(data.SchemaName, data.CollectionSchemaName));
 
-            File.WriteAllText("JSON.json", JsonConvert.SerializeObject(pluralList));
+            // File.WriteAllText("plurals.js", JsonConvert.SerializeObject(pluralList));
+            File.WriteAllText("plurals.js", plurals + "}");
         }
     }
 }
