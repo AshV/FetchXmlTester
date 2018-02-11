@@ -13,19 +13,19 @@ h1 {
 }
 
 ::-webkit-input-placeholder { /* Chrome */
-    color: #ebccff;
+    color: #c18fe1;
 }
 
 :-ms-input-placeholder { /* IE 10+ */
-    color: #ebccff;
+    color: #c18fe1;
 }
 
 ::-moz-placeholder { /* Firefox 19+ */
-    color: #ebccff;
+    color: #c18fe1;
     opacity: 2;
 }
 
 :-moz-placeholder { /* Firefox 4 - 18 */
-    color: #ebccff;
+    color: #c18fe1;
     opacity: 2;
 }

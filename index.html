@@ -13,7 +13,6 @@
 <body>
     <div class="row" style="height:50%">
         <div class="column column-25" style="position:relative">
-            <!--<font color="red">Work In Progress</font>-->
             <h1></h1>
             <h1>&lt;fetchXml<font color="#9b4dca">/</font>&gt;</h1>
             <h1>&lt;tester<font color="#9b4dca">/</font>&gt;</h1>
@@ -50,23 +49,29 @@
             <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
         </div>
         <div class="column column-25" data-balloon="Plural name of entity, please fill if not alredy populated." data-balloon-pos="left">
-            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" wrap="off"></input>
-        </div>
-    </div>
-    <div class="row" style="height:40%">
-        <div class="column column-50">
-            <textarea data-clipboard-target="#requestURI" style="height:30%"></textarea>
-            <textarea data-clipboard-target="#requestURI" style="height:60%"></textarea>
-        </div>
-        <div class="column column-50">
-            <input style="width:100%;height:20%" class="btn" value="Test FetchXML and Generate Request URI" type="submit" />
-            <br />
-            <textarea data-clipboard-target="#requestURI" style="height:70%"></textarea>
+            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" />
         </div>
     </div>
     <div class="row">
+        <div class="column column-25" data-balloon="Generated Requested URI" data-balloon-pos="up">
+            <input id="requestURI" type="text" placeholder="generated request URI" data-clipboard-target="#requestURI"></input>
+        </div>
+        <div class="column column-75">
+            <input id="testButton" style="width:100%" class="btn" value="Test FetchXML and Generate Request URI" type="submit" />
+            <br />
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="column">
+            <textarea data-clipboard-target="#requestURI" style="height:75%"></textarea>
+        </div>
+        <div class="column">
+            <textarea data-clipboard-target="#requestURI" style="height:70%"></textarea>
+        </div>
+    </div>-->
+    <div class="row">
         <div style="bottom:0px; position:absolute;font-size:small;right:25px">
-            <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
+            <a target="_blank" id="finalURI" href="http://AshV.ml">|</a>  <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
         </div>
     </div>
     <script src="scripts/script.js"></script>
