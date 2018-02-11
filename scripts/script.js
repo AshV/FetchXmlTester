@@ -18,7 +18,7 @@ testButton.onclick = function () {
 
     if (message.length == 0) {
         document.querySelector("#finalURI").href = finalLink;
-        document.querySelector("#requestURI").href = finalLink;
+        document.querySelector("#requestURI").value = finalLink;
         document.querySelector("#finalURI").click();
     } else {
         alert(message);
@@ -27,6 +27,8 @@ testButton.onclick = function () {
 
 orgURL.onchange = function () {
     debugger;
+    if (orgURL.value.length == 0)
+        return;
     if (isValidURL(orgURL.value)) {
         orgURL.value = orgURL.value.split("main.aspx")[0];
         combine();
@@ -37,10 +39,16 @@ orgURL.onchange = function () {
 
 fetchXml.onchange = function () {
     debugger;
+    if (fetchXml.value.length == 0)
+        return;
     var xml = parseXml(fetchXml.value);
     setPluralFromXml(xml);
     combine();
 };
+
+fetchXml.onmouseout = function () {
+    fetchXml.onchange();
+}
 
 plural.onchange = function () {
     debugger;
@@ -59,12 +67,13 @@ function setPluralFromXml(xml) {
         var entityTag = xml.getElementsByTagName("entity");
         var entityName = entityTag[0].getAttribute("name").toLowerCase();
         pluralName = plurals[entityName];
-        if (pluralName != "undefined") {
+        if (pluralName != undefined) {
             plural.value = pluralName;
         }
         else {
             plural.value = entityName + "s";
             pluralName = entityName + "s";
+            plural.onmouseover();
         }
     } catch (err) {
         isValidXml = false;
