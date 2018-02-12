@@ -73,7 +73,7 @@ function setPluralFromXml(xml) {
         else {
             plural.value = entityName + "s";
             pluralName = entityName + "s";
-            plural.onmouseover();
+            // plural.onmouseover();
         }
     } catch (err) {
         isValidXml = false;
