@@ -2,6 +2,7 @@ var fetchXml = document.querySelector("#fetchXml");
 var orgURL = document.querySelector("#orgURL");
 var plural = document.querySelector("#plural");
 var testButton = document.querySelector("#testButton");
+var requestURI=document.querySelector("#requestURI");
 var apiVersion = "/api/data/v8.2/";
 var finalLink = "";
 var pluralName = "";
@@ -19,7 +20,7 @@ testButton.onclick = function () {
 
     if (message.length == 0) {
         document.querySelector("#finalURI").href = finalLink;
-        document.querySelector("#requestURI").value = finalLink;
+        requestURI.value = finalLink;
         document.querySelector("#finalURI").click();
     } else {
         alert(message);
@@ -51,9 +52,9 @@ fetchXml.onchange = function () {
     combine();
 };
 
-fetchXml.onmouseout = function () {
-    fetchXml.onchange();
-}
+//fetchXml.onmouseout = function () {
+//    fetchXml.onchange();
+//}
 
 plural.onchange = function () {
     debugger;
@@ -118,3 +119,14 @@ function isValidURL(str) {
         return false;
     }
 }
+
+function copied() {
+    this.parentElement.dataset.balloon = "Copied!";
+};
+
+function restoreCopied() {
+    this.parentElement.dataset.balloon = "Generated Requested URI, Click o Copy.";
+};
+
+requestURI.onclick = copied;
+requestURI.onmouseout = restoreCopied;
