@@ -71,9 +71,17 @@ function setPluralFromXml(xml) {
             plural.value = pluralName;
         }
         else {
-            plural.value = entityName + "s";
-            pluralName = entityName + "s";
-            // plural.onmouseover();
+            if (entityName.endsWith("s")) {
+                plural.value = entityName + "es";
+                pluralName = entityName + "es";
+            } else if (entityName.endsWith("y")) {
+                entityName = entityName.slice(0, -1);
+                plural.value = entityName + "ies";
+                pluralName = entityName + "ies";
+            } else {
+                plural.value = entityName + "s";
+                pluralName = entityName + "s";
+            }
         }
     } catch (err) {
         isValidXml = false;
