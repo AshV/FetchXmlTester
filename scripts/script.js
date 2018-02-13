@@ -40,8 +40,10 @@ orgURL.onchange = function () {
 
 fetchXml.onchange = function () {
     debugger;
-    if (fetchXml.value.length == 0)
+    if (fetchXml.value.length == 0) {
+        isNameModified = false;
         return;
+    }
     var xml = parseXml(fetchXml.value);
     if (!isNameModified) {
         setPluralFromXml(xml);
