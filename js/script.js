@@ -11,11 +11,13 @@ var plurals = { entitydataprovider: "entitydataproviders", msdyn_organizationalu
 var isValidXml = false;
 var isNameModified = false;
 
+
+
 if (localStorage.getItem("orgURL") !== null)
     orgURL.value = localStorage.getItem("orgURL");
 
 testButton.onclick = function () {
-    debugger;
+    fetchXmlOnchange();
     var message = "";
     if (!isValidURL(orgURL.value) || orgURL.value === null)
         message += "Please enter a valid URL. ";
@@ -32,12 +34,12 @@ testButton.onclick = function () {
 }
 
 orgURL.onchange = function () {
-    debugger;
     if (orgURL.value.length === 0)
         return;
     if (isValidURL(orgURL.value)) {
         localStorage.setItem("orgURL", orgURL.value);
-        orgURL.value = orgURL.value.split("main.aspx")[0];
+        var url = new URL(orgURL.value);
+        orgURL.value = url.origin;
         combine();
     } else {
         alert("Please enter a valid URL.");
@@ -47,7 +49,6 @@ orgURL.onchange = function () {
 
 
 fetchXmlOnchange = function () {
-    debugger;
     if (editor.getCode().length === 0) {
         isNameModified = false;
         return;
@@ -64,7 +65,6 @@ fetchXmlOnchange = function () {
 //}
 
 plural.onchange = function () {
-    debugger;
     pluralName = plural.value;
     isNameModified = true;
     combine();
@@ -80,7 +80,6 @@ function combine() {
 }
 
 function setPluralFromXml(xml) {
-    debugger;
     try {
         var entityTag = xml.getElementsByTagName("entity");
         var entityName = entityTag[0].getAttribute("name").toLowerCase();
@@ -108,7 +107,6 @@ function setPluralFromXml(xml) {
 }
 
 function parseXml(fetchXml) {
-    debugger;
     try {
         var parser = new DOMParser();
         var parsedXml = parser.parseFromString(fetchXml, "text/xml");
@@ -121,7 +119,6 @@ function parseXml(fetchXml) {
 }
 
 function isValidURL(str) {
-    debugger;
     regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
     if (regexp.test(str)) {
         return true;
