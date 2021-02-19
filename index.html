@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="js/codemirror.js" type="text/javascript"></script>
     <!-- HTML Meta Tags -->
     <title>Fetch Xml Tester Tool Online</title>
     <meta name="description" content="Test your fetchXml without need of providing your credentials. ">
@@ -30,6 +31,19 @@
     <link rel="stylesheet" type="text/css" href="styles/milligram.min.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" href="styles/balloon.min.css" />
+    <style type="text/css">
+        .CodeMirror-line-numbers {
+            width: 2.2em;
+            color: #aaa;
+            background-color: #eee;
+            text-align: right;
+            padding-right: .3em;
+            font-size: 10pt;
+            font-family: monospace;
+            padding-top: .4em;
+            line-height: normal;
+        }
+    </style>
 </head>
 <body>
     <div class="row" style="height:75%">
@@ -40,12 +54,12 @@
             <h1>&lt;online<font color="#9b4dca">/</font>&gt;</h1>
             <h6>&nbsp;&nbsp;For Dynamics 365 Users</h6>
             <div style="bottom:0px; position:absolute;">
-                <a href="https://www.ashishvishwakarma.com/posts/">Read my articles!</a>          
-<br/>
-                <a href="https://www.ashishvishwakarma.com/test-fetchxml-with-webapi-dynamics-365-fetchxml-tester/">Help?</a>      
+                <a href="https://www.ashishvishwakarma.com/posts/">Read my articles!</a>
+                <br />
+                <a href="https://www.ashishvishwakarma.com/test-fetchxml-with-webapi-dynamics-365-fetchxml-tester/">Help?</a>
                 <a class="github-button" href="https://github.com/AshV" data-size="large" data-show-count="true" aria-label="Follow @AshV on GitHub">Follow @AshV</a>
                 <a class="github-button" href="https://github.com/AshV/FetchXmlFormatter" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star AshV/FetchXmlFormatter on GitHub">Star</a>
-                
+
                 <br />
             </div>
         </div>
@@ -62,15 +76,25 @@
           &lt;/filter&gt;
       &lt;/link-entity&gt;
    &lt;/entity&gt;
-&lt;/fetch&gt;  " wrap="off" autofocus></textarea>
+&lt;/fetch&gt;  " wrap="off" autofocus>&lt;fetch mapping=&apos;logical&apos;&gt;
+   &lt;entity name=&apos;account&apos;&gt;
+      &lt;attribute name=&apos;accountid&apos;/&gt;
+      &lt;attribute name=&apos;name&apos;/&gt;
+      &lt;link-entity name=&apos;systemuser&apos; to=&apos;owninguser&apos;&gt;
+         &lt;filter type=&apos;and&apos;&gt;
+            &lt;condition attribute=&apos;lastname&apos; operator=&apos;ne&apos; value=&apos;Cannon&apos; /&gt;
+          &lt;/filter&gt;
+      &lt;/link-entity&gt;
+   &lt;/entity&gt;
+&lt;/fetch&gt;  </textarea>
         </div>
     </div>
     <div class="row">
-        <div class="column column-75" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
+        <div class="column column-80" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
             <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
         </div>
-        <div class="column column-25" data-balloon="Plural name of entity, please fill if not alredy populated. OR INVALID" data-balloon-pos="left">
-            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" />
+        <div class="column column-20" data-balloon="Plural name of entity, please fill if not alredy populated. OR INVALID" data-balloon-pos="left">
+            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts"/>
         </div>
     </div>
     <div class="row">
@@ -95,10 +119,23 @@
             <a target="_blank" id="finalURI" href="http://AshV.ml">|</a>  <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
         </div>
     </div>
-    <script src="scripts/script.js"></script>
-    <script src="clipboard.min.js" type="text/javascript"></script>
+    <script src="js/script.js"></script>
+    <script src="js/clipboard.min.js" type="text/javascript"></script>
     <script>new Clipboard('.btn');</script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>(function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-88171590-1', 'auto'); ga('send', 'pageview');</script>
+    <script type="text/javascript">
+        var editor = CodeMirror.fromTextArea('fetchXml', {
+            height: "98%",
+            parserfile: "parsexml.js",
+            stylesheet: "css/xmlcolors.css",
+            path: "js/",
+            continuousScanning: 500,
+            lineNumbers: true,
+            onChange: function () {
+                fetchXmlOnchange();
+            }
+        });
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ html, body {
     width: 99%;
 }
 
-textarea, input {
+input {
     resize: none;
     color: #9807f5;
 }
