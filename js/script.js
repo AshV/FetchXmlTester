@@ -2,7 +2,8 @@ var fetchXml = document.querySelector("#fetchXml");
 var orgURL = document.querySelector("#orgURL");
 var plural = document.querySelector("#plural");
 var testButton = document.querySelector("#testButton");
-var requestURI=document.querySelector("#requestURI");
+var requestURI = document.querySelector("#requestURI");
+var queryName = document.querySelector("#queryName");
 var apiVersion = "/api/data/v9.2/";
 var finalLink = "";
 var pluralName = "";
@@ -10,10 +11,13 @@ var plurals = { entitydataprovider: "entitydataproviders", msdyn_organizationalu
 var isValidXml = false;
 var isNameModified = false;
 
+if (localStorage.getItem("orgURL") !== null)
+    orgURL.value = localStorage.getItem("orgURL");
+
 testButton.onclick = function () {
     debugger;
     var message = "";
-    if (!isValidURL(orgURL.value) || orgURL.value == null)
+    if (!isValidURL(orgURL.value) || orgURL.value === null)
         message += "Please enter a valid URL. ";
     if (!isValidXml)
         message += "Please enter valid fetchXml. "
@@ -29,9 +33,10 @@ testButton.onclick = function () {
 
 orgURL.onchange = function () {
     debugger;
-    if (orgURL.value.length == 0)
+    if (orgURL.value.length === 0)
         return;
     if (isValidURL(orgURL.value)) {
+        localStorage.setItem("orgURL", orgURL.value);
         orgURL.value = orgURL.value.split("main.aspx")[0];
         combine();
     } else {
@@ -43,7 +48,7 @@ orgURL.onchange = function () {
 
 fetchXmlOnchange = function () {
     debugger;
-    if (editor.getCode().length == 0) {
+    if (editor.getCode().length === 0) {
         isNameModified = false;
         return;
     }
@@ -64,6 +69,10 @@ plural.onchange = function () {
     isNameModified = true;
     combine();
 };
+
+queryName.onkeyup = function () {
+    document.title = "fX:" + queryName.value;
+}
 
 function combine() {
     finalLink = orgURL.value + apiVersion + pluralName + "?fetchXml=" + editor.getCode();

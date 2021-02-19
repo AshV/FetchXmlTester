@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-    <div class="row" style="height:75%">
+    <div class="row" style="height:80%">
         <div class="column column-25" style="position:relative">
             <h1></h1>
             <h1>&lt;fetchXml<font color="#9b4dca">/</font>&gt;</h1>
@@ -64,19 +64,19 @@
             </div>
         </div>
         <div class="column column-75" data-balloon="Paste your fetchXml here to test." data-balloon-pos="left">
-            <textarea style="height: 98%" id="fetchXml" placeholder="Paste your fetchXML here.
+            <div class="row">
+                <div class="column column-20">
+                    <input id="open" style="width:100%" class="button-small button-outline" value="Open File" type="submit" onclick="loadFile()" />
+                </div>
+                <div class="column column-60">
+                    <input id="queryName" type="text" placeholder="What is this query for?" />
+                </div>
+                <div class="column column-20">
+                    <input id="save" style="width:100%" class="button button-outline" value="Save As File" type="submit" />
+                </div>
+            </div>
 
-&lt;fetch mapping=&apos;logical&apos;&gt;
-   &lt;entity name=&apos;account&apos;&gt;
-      &lt;attribute name=&apos;accountid&apos;/&gt;
-      &lt;attribute name=&apos;name&apos;/&gt;
-      &lt;link-entity name=&apos;systemuser&apos; to=&apos;owninguser&apos;&gt;
-         &lt;filter type=&apos;and&apos;&gt;
-            &lt;condition attribute=&apos;lastname&apos; operator=&apos;ne&apos; value=&apos;Cannon&apos; /&gt;
-          &lt;/filter&gt;
-      &lt;/link-entity&gt;
-   &lt;/entity&gt;
-&lt;/fetch&gt;  " wrap="off" autofocus>&lt;fetch mapping=&apos;logical&apos;&gt;
+            <textarea id="fetchXml" wrap="off" autofocus>&lt;fetch mapping=&apos;logical&apos;&gt;
    &lt;entity name=&apos;account&apos;&gt;
       &lt;attribute name=&apos;accountid&apos;/&gt;
       &lt;attribute name=&apos;name&apos;/&gt;
@@ -89,12 +89,13 @@
 &lt;/fetch&gt;  </textarea>
         </div>
     </div>
+    </div>
     <div class="row">
         <div class="column column-80" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
             <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
         </div>
         <div class="column column-20" data-balloon="Plural name of entity, please fill if not alredy populated. OR INVALID" data-balloon-pos="left">
-            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts"/>
+            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts" />
         </div>
     </div>
     <div class="row">
@@ -126,7 +127,7 @@
     <script>(function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-88171590-1', 'auto'); ga('send', 'pageview');</script>
     <script type="text/javascript">
         var editor = CodeMirror.fromTextArea('fetchXml', {
-            height: "98%",
+            height: "90%",
             parserfile: "parsexml.js",
             stylesheet: "css/xmlcolors.css",
             path: "js/",
@@ -137,5 +138,36 @@
             }
         });
     </script>
+
+    <input style="position: absolute; top: -100px;" type="file" id="file-input" accept="text/plain,text/xml" />
+    <script>
+        function loadFile() {
+            document.getElementById('file-input').click();
+        }
+        function readSingleFile(e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                displayContents(contents);
+            };
+            reader.readAsText(file);
+        }
+
+        function displayContents(contents) {
+            debugger;
+            editor.setCode(contents);
+            var queryName = document.getElementById('file-input').value;
+            queryName = queryName.substring(queryName.lastIndexOf('\\') + 1);
+            document.getElementById('queryName').value = queryName;
+            document.title = queryName;
+        }
+
+        document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+    </script>
+
 </body>
 </html>
