@@ -141,3 +141,26 @@ function restoreCopied() {
 
 requestURI.onclick = copied;
 requestURI.onmouseout = restoreCopied;
+
+const downloadToFile = (content, filename, contentType) => {
+    const a = document.createElement('a');
+    const file = new Blob([content], { type: contentType });
+
+    a.href = URL.createObjectURL(file);
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(a.href);
+};
+
+document.querySelector('#save').addEventListener('click', () => {
+    var fileName = "fetchXml-AshV.xml";
+    if (queryName.value !== null && queryName.value.length > 0) {
+
+        if (queryName.value.endsWith(".xml") || queryName.value.endsWith(".txt"))
+            fileName = queryName.value;
+        else
+            fileName = queryName.value + ".xml"
+    }
+    downloadToFile(editor.getCode(), fileName, 'text/plain');
+});
