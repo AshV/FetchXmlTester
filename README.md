@@ -1,6 +1,17 @@
 # FetchXmlTester
-Test FetchXml Online without providing credentials
+###### Test FetchXml Online without providing credentials using WebAPI GET Call
 
-To Use : https://AshishVishwakarma.com/FetchXmlTester/
+Tool Link : https://AshishVishwakarma.com/FetchXmlTester/
 
-To see how it works : https://AshishVishwakarma.com/test-fetchxml-with-webapi-dynamics-365-fetchxml-tester/
+#### Features
+
+1. FetchXml syntax highlighting.
+2. Friendly name appears on title bar, makes easier to switch between multiple tabs.
+3. Load FetchXml from file or Just Copy/Paste.
+4. Save as file option to download.
+5. Remembers last used organization URL.
+6. Let's you test your FetchXml right on you browser without any Login/Download.
+
+PS: Best to use with [JSON Viewer PRO](https://chrome.google.com/webstore/detail/json-viewer-pro/eifflpmocdbdmepbjaopkkhbfmdgijcc).
+
+Trick Used : https://AshishVishwakarma.com/test-fetchxml-with-webapi-dynamics-365-fetchxml-tester/ 

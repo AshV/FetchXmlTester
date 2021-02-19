@@ -157,7 +157,7 @@ document.querySelector('#save').addEventListener('click', () => {
         if (queryName.value.endsWith(".xml") || queryName.value.endsWith(".txt"))
             fileName = queryName.value;
         else
-            fileName = queryName.value + ".xml"
+            fileName = "fetchXml-" + queryName.value + ".xml"
     }
     downloadToFile(editor.getCode(), fileName, 'text/plain');
 });
