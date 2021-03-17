@@ -1,0 +1,29 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "Fetch Xml Tester Tool Online",
+  "short_name": "FetchXml Tester",
+  "scope": "/FetchXmlTester/",
+  "display": "standalone",
+  "start_url": "https://www.ashishvishwakarma.com/FetchXmlTester/",
+  "background_color": "#000000",
+  "theme_color": "transparent",
+  "description": "Test your fetchXml without need of providing your credentials. ",
+  "orientation": "landscape",
+  "related_applications": [],
+  "prefer_related_applications": "false",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 48x48 32x32 16x16"
+    }
+  ],
+  "url": "https://www.ashishvishwakarma.com/FetchXmlTester/",
+  "screenshots": [
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "265x140"
+    }
+  ]
+}

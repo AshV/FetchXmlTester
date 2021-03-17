@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="manifest" href="/manifest.json" />
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
     <script src="js/codemirror.js" type="text/javascript"></script>
     <!-- HTML Meta Tags -->
     <title>Fetch Xml Tester Tool Online</title>
