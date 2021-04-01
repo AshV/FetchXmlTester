@@ -99,8 +99,11 @@
     </div>
     </div>
     <div class="row">
-        <div class="column column-80" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
+        <div class="column column-60" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
             <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
+        </div>
+        <div class="column column-20" data-balloon="Click to beautify/format fetchXml" data-balloon-pos="top">
+            <input id="beautify" style="width:100%" class="button button-outline" value="Beautify" type="submit" />
         </div>
         <div class="column column-20" data-balloon="Plural name of entity, please fill if not alredy populated. OR INVALID" data-balloon-pos="left">
             <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts" />
@@ -115,14 +118,6 @@
             <br />
         </div>
     </div>
-    <!--<div class="row">
-        <div class="column">
-            <textarea data-clipboard-target="#requestURI" style="height:75%"></textarea>
-        </div>
-        <div class="column">
-            <textarea data-clipboard-target="#requestURI" style="height:70%"></textarea>
-        </div>
-    </div>-->
     <div class="row">
         <div style="bottom:0px; position:absolute;font-size:small;right:25px">
             <a target="_blank" id="finalURI" href="http://AshV.ml">|</a>  <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
@@ -166,7 +161,6 @@
         }
 
         function displayContents(contents) {
-            debugger;
             editor.setCode(contents);
             var queryName = document.getElementById('file-input').value;
             queryName = queryName.substring(queryName.lastIndexOf('\\') + 1);
