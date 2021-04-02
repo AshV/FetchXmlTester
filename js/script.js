@@ -236,6 +236,7 @@ function decodeUrlHash() {
         plural.value = hash[2];
         queryName.value = hash[4];
         location.hash = '';
+        parseXml(hash[3]);
     }
 }
 
