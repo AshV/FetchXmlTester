@@ -150,6 +150,7 @@
         function loadFile() {
             document.getElementById('file-input').click();
         }
+
         function readSingleFile(e) {
             var file = e.target.files[0];
             if (!file) {
@@ -173,6 +174,5 @@
 
         document.getElementById('file-input').addEventListener('change', readSingleFile, false);
     </script>
-
 </body>
 </html>
