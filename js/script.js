@@ -1,9 +1,11 @@
 var fetchXml = document.querySelector("#fetchXml");
 var orgURL = document.querySelector("#orgURL");
+var queryName = document.querySelector("#queryName");
 var plural = document.querySelector("#plural");
 var testButton = document.querySelector("#testButton");
 var requestURI = document.querySelector("#requestURI");
 var queryName = document.querySelector("#queryName");
+var copyLinkButton = document.querySelector('#copyLink');
 var apiVersion = "/api/data/v9.2/";
 var finalLink = "";
 var pluralName = "";
@@ -102,19 +104,19 @@ function setPluralFromXml(xml) {
         }
     } catch (err) {
         isValidXml = false;
-        alert("Seems like invalid fetchXml, Please verify!");
     }
 }
 
 function parseXml(fetchXml) {
-    try {
-        var parser = new DOMParser();
-        var parsedXml = parser.parseFromString(fetchXml, "text/xml");
+    debugger;
+    var parser = new DOMParser();
+    var parsedXml = parser.parseFromString(fetchXml, "text/xml");
+    if (parsedXml.documentElement.innerHTML.includes('parsererror')) {
+        isValidXml = false;
+        console.log("fetchXml is Invalid : " + parsedXml.documentElement.textContent);
+    } else {
         isValidXml = true;
         return parsedXml;
-    } catch (err) {
-        isValidXml = false
-        alert("fetchXml entered in invalid : " + err.message);
     }
 }
 
@@ -129,15 +131,23 @@ function isValidURL(str) {
 }
 
 function copied() {
-    this.parentElement.dataset.balloon = "Copied!";
+    if (isValidXml)
+        this.parentElement.dataset.balloon = "Copied to Clipboard!";
 };
 
 function restoreCopied() {
     this.parentElement.dataset.balloon = "Generated Requested URI, Click to Copy.";
 };
 
+function restoreCopiedButton() {
+    this.parentElement.dataset.balloon = "Copy Query Tool Link To Share.";
+};
+
 requestURI.onclick = copied;
 requestURI.onmouseout = restoreCopied;
+
+copyLinkButton.onclick = copied;
+copyLinkButton.onmouseout = restoreCopiedButton;
 
 const downloadToFile = (content, filename, contentType) => {
     const a = document.createElement('a');
@@ -163,6 +173,13 @@ document.querySelector('#save').addEventListener('click', () => {
 });
 
 var prettifyXml = function (sourceXml) {
+    debugger;
+    parseXml(sourceXml);
+    if (!isValidXml) {
+        alert('Invalid fetchXml!');
+        return sourceXml;
+    }
+
     var xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
     var xsltDoc = new DOMParser().parseFromString([
         // describes how we want to modify the XML - indent everything
@@ -186,8 +203,40 @@ var prettifyXml = function (sourceXml) {
 };
 
 document.querySelector('#beautify').addEventListener('click', () => {
-    debugger;
     var ugly = editor.getCode();
     var prettyXml = prettifyXml(ugly);
     editor.setCode(prettyXml);
 });
+
+copyLinkButton.addEventListener('click', () => {
+    parseXml(editor.getCode());
+    if (!isValidXml) {
+        alert('Invalid fetchXml!');
+        return;
+    }
+    var shareHome = 'https://AshishVishwakarma.com/FetchXmlTester';
+    var shareUrl = orgURL.value;
+    var sharePlural = plural.value;
+    var shareQueryName = queryName.value;
+    var shareXml = encodeURIComponent(editor.getCode());
+    var shareLink = shareHome.concat('#', shareUrl, '#', sharePlural, '#', shareXml, '#', shareQueryName);
+
+    requestURI.value = shareLink;
+    requestURI.select();
+    requestURI.setSelectionRange(0, 99999); /* For mobile devices */
+
+    document.execCommand("copy");
+});
+
+function decodeUrlHash() {
+    var hash = location.hash.split('#');
+    if (hash.length == 5) {
+        editor.setCode(decodeURIComponent(hash[3]));
+        orgURL.value = hash[1];
+        plural.value = hash[2];
+        queryName.value = hash[4];
+        location.hash = '';
+    }
+}
+
+window.onload = decodeUrlHash;

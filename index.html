@@ -99,18 +99,21 @@
     </div>
     </div>
     <div class="row">
-        <div class="column column-60" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
+        <div class="column column-40" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
             <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
+        </div>
+        <div class="column column-20" data-balloon="Plural name of entity, please modify if Invalid" data-balloon-pos="top">
+            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts" />
+        </div>
+        <div class="column column-20" data-balloon="Copy Query Tool Link To Share" data-balloon-pos="top">
+            <input id="copyLink" style="width:100%" class="button button-outline" value="Copy Query Link" type="submit" />
         </div>
         <div class="column column-20" data-balloon="Click to beautify/format fetchXml" data-balloon-pos="top">
             <input id="beautify" style="width:100%" class="button button-outline" value="Beautify" type="submit" />
         </div>
-        <div class="column column-20" data-balloon="Plural name of entity, please fill if not alredy populated. OR INVALID" data-balloon-pos="left">
-            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts" />
-        </div>
     </div>
     <div class="row">
-        <div class="column column-20" data-balloon="Generated Requested URI, Click o Copy!" data-balloon-pos="up">
+        <div class="column column-20" data-balloon="Generated Requested URI, Click to Copy!" data-balloon-pos="up">
             <input class="btn" id="requestURI" type="text" placeholder="generated request URI" data-clipboard-target="#requestURI" readonly />
         </div>
         <div class="column column-80">
