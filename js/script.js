@@ -206,7 +206,7 @@ copyLinkButton.addEventListener('click', () => {
         alert('Invalid fetchXml!');
         return;
     }
-    var shareHome = 'https://AshishVishwakarma.com/FetchXmlTester';
+    var shareHome = 'https://www.ashishvishwakarma.com/FetchXmlTester/';
     var shareUrl = orgURL.value;
     var sharePlural = plural.value;
     var shareQueryName = queryName.value;
