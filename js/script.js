@@ -15,6 +15,24 @@ var isNameModified = false;
 if (localStorage.getItem("orgURL") !== null)
     orgURL.value = localStorage.getItem("orgURL");
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const load = urlParams.get('load');
+if (load !== null || load !== "") {
+    fetch(load)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.text();
+        })
+        .then(data => {
+            editor.setCode(prettifyXml(data));
+        })
+        .catch(error => {
+            console.error('Error during fetch operation:', error);
+            alert('Error during loading URL');
+        });
+}
+
 testButton.onclick = function () {
     fetchXmlOnchange();
     var message = "";
@@ -68,7 +86,7 @@ queryName.onkeyup = function () {
 }
 
 function combine() {
-    finalLink = orgURL.value + apiVersion + pluralName + "?fetchXml=" + editor.getCode();
+    finalLink = orgURL.value + apiVersion + pluralName + "?fetchXml=" + minifyXML(editor.getCode());
     document.querySelector("#finalURI").href = finalLink;
 }
 
@@ -99,7 +117,6 @@ function setPluralFromXml(xml) {
 }
 
 function parseXml(fetchXml) {
-    debugger;
     var parser = new DOMParser();
     var parsedXml = parser.parseFromString(fetchXml, "text/xml");
     if (parsedXml.documentElement.innerHTML.includes('parsererror')) {
@@ -122,7 +139,6 @@ function isValidURL(str) {
 }
 
 function copied() {
-    debugger;
     if (isValidXml)
         this.parentElement.dataset.balloon = "Copied to Clipboard!";
 };
@@ -165,7 +181,6 @@ document.querySelector('#save').addEventListener('click', () => {
 });
 
 var prettifyXml = function (sourceXml) {
-    debugger;
     parseXml(sourceXml);
     if (!isValidXml) {
         alert('Invalid fetchXml!');
@@ -192,6 +207,15 @@ var prettifyXml = function (sourceXml) {
     var resultDoc = xsltProcessor.transformToDocument(xmlDoc);
     var resultXml = new XMLSerializer().serializeToString(resultDoc);
     return resultXml;
+};
+
+var minifyXML = function (xml) {
+    return xml
+        .replace(/>\s+</g, '><')    // Remove whitespace between tags
+        .replace(/\s{2,}/g, ' ')    // Collapse multiple spaces
+        .replace(/^\s+|\s+$/gm, '') // Trim lines
+        .replace(/\n/g, '')         // Remove newlines
+        .trim();                    // Trim overall string
 };
 
 document.querySelector('#beautify').addEventListener('click', () => {
