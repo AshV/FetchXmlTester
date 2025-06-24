@@ -18,7 +18,7 @@ if (localStorage.getItem("orgURL") !== null)
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const load = urlParams.get('load');
-if (load !== null || load !== "") {
+if (load !== null && load !== "") {
     fetch(load)
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
