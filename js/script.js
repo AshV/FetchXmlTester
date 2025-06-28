@@ -15,23 +15,25 @@ var isNameModified = false;
 if (localStorage.getItem("orgURL") !== null)
     orgURL.value = localStorage.getItem("orgURL");
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const load = urlParams.get('load');
-if (load !== null && load !== "") {
-    fetch(load)
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return response.text();
-        })
-        .then(data => {
-            editor.setCode(prettifyXml(data));
-        })
-        .catch(error => {
-            console.error('Error during fetch operation:', error);
-            alert('Error during loading URL');
-        });
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const load = urlParams.get('load');
+    if (load !== null && load !== "") {
+        fetch(load)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                editor.setCode(prettifyXml(data));
+            })
+            .catch(error => {
+                console.error('Error during fetch operation:', error);
+                alert('Error during loading URL');
+            });
+    }
+});
 
 testButton.onclick = function () {
     fetchXmlOnchange();
