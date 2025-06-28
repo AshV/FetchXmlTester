@@ -176,23 +176,29 @@
         document.getElementById('file-input').addEventListener('change', readSingleFile, false);
 
         document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+            debugger;
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const load = urlParams.get('load');
             if (load !== null && load !== "") {
                 fetch(load)
                     .then(response => {
+                        debugger;
                         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         return response.text();
                     })
                     .then(data => {
+                        debugger;
                         editor.setCode(prettifyXml(data));
                     })
                     .catch(error => {
+                        debugger;
                         console.error('Error during fetch operation:', error);
                         alert('Error during loading URL');
                     });
-            }
+                }
+            }, 1000);
         });
     </script>
 </body>
