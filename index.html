@@ -40,28 +40,15 @@
     <link rel="stylesheet" type="text/css" href="styles/milligram.min.css" />
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" href="styles/balloon.min.css" />
-    <style type="text/css">
-        .CodeMirror-line-numbers {
-            width: 2.2em;
-            color: #aaa;
-            background-color: #eee;
-            text-align: right;
-            padding-right: .3em;
-            font-size: 10pt;
-            font-family: monospace;
-            padding-top: .4em;
-            line-height: normal;
-        }
-    </style>
 </head>
 <body>
-    <div class="row" style="height:80%">
-        <div class="column column-20" style="position:relative">
+    <div class="row h-80">
+        <div class="column column-20 relative">
             <h2></h2>
-            <h2>&lt;fetchXml<font color="#9b4dca">/</font>&gt;</h2>
-            <h2>&lt;tester<font color="#9b4dca">/</font>&gt;</h2>
-            <h2>&lt;online<font color="#9b4dca">/</font>&gt;</h2>
-            <div style="bottom:0px; position:absolute;">
+            <h2>&lt;fetchXml<span class="text-purple">/</span>&gt;</h2>
+            <h2>&lt;tester<span class="text-purple">/</span>&gt;</h2>
+            <h2>&lt;online<span class="text-purple">/</span>&gt;</h2>
+            <div class="absolute-bottom">
                 <a href="https://www.ashishvishwakarma.com/posts/">Read my articles!</a>
                 <br />
                 <a href="https://www.ashishvishwakarma.com/test-fetchxml-with-webapi-dynamics-365-fetchxml-tester/">Help?</a>
@@ -76,13 +63,13 @@
         <div class="column column-80" data-balloon="Paste your fetchXml here to test." data-balloon-pos="left">
             <div class="row">
                 <div class="column column-20">
-                    <input id="open" style="width:100%" class="button-small button-outline" value="Open File" type="submit" onclick="loadFile()" />
+                    <input id="open" class="button-small button-outline w-100" value="Open File" type="submit" onclick="loadFile()" />
                 </div>
                 <div class="column column-60">
                     <input id="queryName" type="text" placeholder="What is this query for?" />
                 </div>
                 <div class="column column-20">
-                    <input id="save" style="width:100%" class="button button-outline" value="Save As File" type="submit" />
+                    <input id="save" class="button button-outline w-100" value="Save As File" type="submit" />
                 </div>
             </div>
 
@@ -102,16 +89,16 @@
     </div>
     <div class="row">
         <div class="column column-40" data-balloon="Dynanics 365 Url which is currently logged-in in same browser session." data-balloon-pos="up">
-            <input type="url" style="width:100%" class="btn" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
+            <input type="url" class="btn w-100" id="orgURL" placeholder="e.g https://OrganizationName.crm.dynamics.com" wrap="off"></input>
         </div>
         <div class="column column-20" data-balloon="Plural name of entity, please modify if Invalid" data-balloon-pos="top">
-            <input type="text" style="width:100%" class="btn" id="plural" placeholder="e.g. Entities" value="accounts" />
+            <input type="text" class="btn w-100" id="plural" placeholder="e.g. Entities" value="accounts" />
         </div>
         <div class="column column-20" data-balloon="Copy Query Tool Link To Share" data-balloon-pos="top">
-            <input id="copyLink" style="width:100%" class="button button-outline" value="Copy Query Link" type="submit" />
+            <input id="copyLink" class="button button-outline w-100" value="Copy Query Link" type="submit" />
         </div>
         <div class="column column-20" data-balloon="Click to beautify/format fetchXml" data-balloon-pos="top">
-            <input id="beautify" style="width:100%" class="button button-outline" value="Beautify" type="submit" />
+            <input id="beautify" class="button button-outline w-100" value="Beautify" type="submit" />
         </div>
     </div>
     <div class="row">
@@ -119,13 +106,13 @@
             <input class="btn" id="requestURI" type="text" placeholder="generated request URI" data-clipboard-target="#requestURI" readonly />
         </div>
         <div class="column column-80">
-            <input id="testButton" style="width:100%" class="btn" value="Test FetchXML and Generate Request URI" type="submit" />
+            <input id="testButton" class="btn w-100" value="Test FetchXML and Generate Request URI" type="submit" />
             <br />
         </div>
     </div>
     <div class="row">
-        <div style="bottom:0px; position:absolute;font-size:small;right:25px">
-            <a target="_blank" id="finalURI" href="http://AshV.ml">|</a>  <b>FetchXml Tester Online</b> hosted with <font color="red">❤</font> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
+        <div class="absolute-bottom-right">
+            <a target="_blank" id="finalURI" href="http://AshV.ml">|</a>  <b>FetchXml Tester Online</b> hosted with <span class="text-red">❤</span> by <a href="https://github.com/AshV/FetchXmlTester">GitHub</a>
         </div>
     </div>
     <script src="js/script.js"></script>
@@ -147,59 +134,6 @@
     </script>
 
     <input style="position: absolute; top: -100px;" type="file" id="file-input" accept="text/plain,text/xml" />
-    <script>
-        function loadFile() {
-            document.getElementById('file-input').click();
-        }
-
-        function readSingleFile(e) {
-            var file = e.target.files[0];
-            if (!file) {
-                return;
-            }
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var contents = e.target.result;
-                displayContents(contents);
-            };
-            reader.readAsText(file);
-        }
-
-        function displayContents(contents) {
-            editor.setCode(contents);
-            var queryName = document.getElementById('file-input').value;
-            queryName = queryName.substring(queryName.lastIndexOf('\\') + 1);
-            document.getElementById('queryName').value = queryName;
-            document.title = queryName;
-        }
-
-        document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(() => {
-            debugger;
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const load = urlParams.get('load');
-            if (load !== null && load !== "") {
-                fetch(load)
-                    .then(response => {
-                        debugger;
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        return response.text();
-                    })
-                    .then(data => {
-                        debugger;
-                        editor.setCode(prettifyXml(data));
-                    })
-                    .catch(error => {
-                        debugger;
-                        console.error('Error during fetch operation:', error);
-                        alert('Error during loading URL');
-                    });
-                }
-            }, 1000);
-        });
-    </script>
+    <script src="js/init.js"></script>
 </body>
 </html>

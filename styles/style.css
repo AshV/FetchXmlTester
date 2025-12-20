@@ -1,7 +1,56 @@
-html, body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html,
+body {
     height: 98%;
     width: 99%;
+    font-family: 'Inter', sans-serif;
 }
+
+.text-purple {
+    color: #9b4dca;
+}
+
+.text-red {
+    color: red;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-80 {
+    height: 80%;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.absolute-bottom-right {
+    position: absolute;
+    bottom: 0px;
+    right: 25px;
+    font-size: small;
+}
+
+.CodeMirror-line-numbers {
+    width: 2.2em;
+    color: #aaa;
+    background-color: #eee;
+    text-align: right;
+    padding-right: .3em;
+    font-size: 10pt;
+    font-family: monospace;
+    padding-top: .4em;
+    line-height: normal;
+}
+
 
 input {
     resize: none;
@@ -12,20 +61,24 @@ h2 {
     line-height: 50%;
 }
 
-::-webkit-input-placeholder { /* Chrome */
+::-webkit-input-placeholder {
+    /* Chrome */
     color: #c18fe1;
 }
 
-:-ms-input-placeholder { /* IE 10+ */
+:-ms-input-placeholder {
+    /* IE 10+ */
     color: #c18fe1;
 }
 
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
+    /* Firefox 19+ */
     color: #c18fe1;
     opacity: 2;
 }
 
-:-moz-placeholder { /* Firefox 4 - 18 */
+:-moz-placeholder {
+    /* Firefox 4 - 18 */
     color: #c18fe1;
     opacity: 2;
 }

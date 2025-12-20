@@ -103,7 +103,7 @@ function parseXml(fetchXml) {
     var parsedXml = parser.parseFromString(fetchXml, "text/xml");
     if (parsedXml.documentElement.innerHTML.includes('parsererror')) {
         isValidXml = false;
-        console.log("fetchXml is Invalid : " + parsedXml.documentElement.textContent);
+        // console.log("fetchXml is Invalid : " + parsedXml.documentElement.textContent);
     } else {
         isValidXml = true;
         return parsedXml;
