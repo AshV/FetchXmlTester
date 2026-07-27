@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let retries = 0;
                 const trySetCode = () => {
                     if (typeof editor !== 'undefined' && editor.editor) {
-                        editor.setCode(prettifyXml(data));
+                        editor.setCode(data);
                     } else if (retries < 100) {
                         retries++;
                         setTimeout(trySetCode, 100);
