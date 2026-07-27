@@ -26,23 +26,33 @@ function displayContents(contents) {
 document.getElementById('file-input').addEventListener('change', readSingleFile, false);
 
 document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const load = urlParams.get('load');
-        if (load !== null && load !== "") {
-            fetch(load)
-                .then(response => {
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return response.text();
-                })
-                .then(data => {
-                    editor.setCode(prettifyXml(data));
-                })
-                .catch(error => {
-                    console.error('Error during fetch operation:', error);
-                    alert('Error during loading URL');
-                });
-        }
-    }, 1000);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const load = urlParams.get('load');
+    if (load !== null && load !== "") {
+        fetch(load)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                let retries = 0;
+                const trySetCode = () => {
+                    if (typeof editor !== 'undefined' && editor.editor) {
+                        editor.setCode(prettifyXml(data));
+                    } else if (retries < 100) {
+                        retries++;
+                        setTimeout(trySetCode, 100);
+                    } else {
+                        console.error('Editor initialization timeout');
+                        alert('Error: Editor took too long to load');
+                    }
+                };
+                trySetCode();
+            })
+            .catch(error => {
+                console.error('Error during fetch operation:', error);
+                alert('Error during loading URL');
+            });
+    }
 });
