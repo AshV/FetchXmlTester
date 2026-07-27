@@ -39,6 +39,14 @@ body {
     font-size: small;
 }
 
+.absolute-bottom-center {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: small;
+}
+
 .CodeMirror-line-numbers {
     width: 2.2em;
     color: #aaa;
