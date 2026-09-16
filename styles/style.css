@@ -148,8 +148,23 @@ html, body {
     flex-shrink: 0;
 }
 
+/* Screen-reader / SEO accessible text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Iconic 3-Line XML Logo on Right Side of Header (Right-Aligned, Glow on Hover) */
+h1.brand-logo-xml,
 .brand-logo-xml {
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

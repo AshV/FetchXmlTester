@@ -23,18 +23,105 @@
     <!-- CodeMirror Core -->
     <script src="js/codemirror.js" type="text/javascript"></script>
 
-    <!-- HTML Meta Tags -->
-    <title>FetchXml Tester - Online Dynamics 365 WebAPI Query Runner</title>
-    <meta name="description" content="Test your FetchXml online without providing credentials using Dataverse / Dynamics 365 WebAPI GET Call.">
-    <meta name="keywords" content="fetchXML,Dynamics,CRM,365,CE,CX,Dataverse,PowerApps,PowerPlatform">
-    <meta name="author" content="Ashish Vishwakarma">
+    <!-- Core SEO Meta Tags -->
+    <title>FetchXML Tester Online - Dynamics 365 &amp; Dataverse WebAPI Query Runner</title>
+    <meta name="description" content="Test, format, and execute FetchXML queries directly in your browser using Microsoft Dataverse &amp; Dynamics 365 WebAPI GET calls without sharing credentials. Free developer tool by AshV.">
+    <meta name="keywords" content="FetchXML, FetchXML Tester, Dynamics 365, Dataverse, Power Platform, WebAPI GET, CRM Online, PowerApps, XrmToolBox, Dataverse WebAPI, FetchXML query runner">
+    <meta name="author" content="Ashish Vishwakarma (AshV)">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://www.ashishvishwakarma.com/FetchXmlTester/">
+    <link rel="author" href="https://www.ashishvishwakarma.com/">
 
-    <!-- Social & OpenGraph Meta Tags -->
-    <meta property="og:url" content="https://www.ashishvishwakarma.com/FetchXmlTester">
+    <!-- Theme & Mobile Web App Capabilities -->
+    <meta name="theme-color" content="#9b4dca">
+    <meta name="color-scheme" content="light dark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FetchXML Tester">
+
+    <!-- OpenGraph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="FetchXml Tester - Online Dynamics 365 WebAPI Query Runner">
-    <meta property="og:description" content="Test your FetchXml online without providing credentials using Dataverse / Dynamics 365 WebAPI GET Call.">
+    <meta property="og:site_name" content="FetchXML Tester Online">
+    <meta property="og:url" content="https://www.ashishvishwakarma.com/FetchXmlTester/">
+    <meta property="og:title" content="FetchXML Tester Online - Dynamics 365 &amp; Dataverse WebAPI Query Runner">
+    <meta property="og:description" content="Test, format, and execute FetchXML queries directly in your browser using Microsoft Dataverse &amp; Dynamics 365 WebAPI GET calls without sharing credentials.">
     <meta property="og:image" content="https://github.com/AshV/FetchXmlTester/raw/master/logo.png">
+    <meta property="og:image:alt" content="FetchXML Tester Online Preview">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.ashishvishwakarma.com/FetchXmlTester/">
+    <meta name="twitter:title" content="FetchXML Tester Online - Dynamics 365 &amp; Dataverse WebAPI Query Runner">
+    <meta name="twitter:description" content="Test, format, and execute FetchXML queries directly in your browser using Microsoft Dataverse &amp; Dynamics 365 WebAPI GET calls without sharing credentials.">
+    <meta name="twitter:image" content="https://github.com/AshV/FetchXmlTester/raw/master/logo.png">
+    <meta name="twitter:image:alt" content="FetchXML Tester Online Preview">
+
+    <!-- Structured Data: JSON-LD Schema (WebApplication & HowTo) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://www.ashishvishwakarma.com/FetchXmlTester/#webapp",
+          "name": "FetchXML Tester Online",
+          "url": "https://www.ashishvishwakarma.com/FetchXmlTester/",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "All (Web Browser)",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "description": "Test, format, and execute FetchXML queries directly in your browser using Microsoft Dataverse & Dynamics 365 WebAPI GET calls without sharing credentials.",
+          "image": "https://github.com/AshV/FetchXmlTester/raw/master/logo.png",
+          "author": {
+            "@type": "Person",
+            "name": "Ashish Vishwakarma",
+            "url": "https://www.ashishvishwakarma.com/",
+            "sameAs": [
+              "https://www.linkedin.com/in/ashishvishwakarma-ashv",
+              "https://github.com/AshV"
+            ]
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Test FetchXML queries in browser without sharing credentials",
+            "Convert FetchXML to Dataverse WebAPI GET URL",
+            "Multi-environment management for Dataverse organizations",
+            "Entity pluralization suggestions",
+            "Beautify and format XML syntax",
+            "Save queries to offline browser library",
+            "Export and import query files",
+            "Dark and Light theme support"
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to Test FetchXML Online with Dynamics 365 WebAPI",
+          "description": "Step-by-step guide to run FetchXML queries against Microsoft Dataverse without third-party credentials.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "Enter Target Environment",
+              "text": "Add or select your Dynamics 365 / Dataverse organization URL in the Environment bar."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Write or Paste FetchXML",
+              "text": "Paste your FetchXML query in the code editor and specify the entity plural name."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Click Test FetchXML",
+              "text": "Click Test FetchXML to execute the query via WebAPI GET in your authenticated browser session."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Fonts & CSS Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +132,10 @@
 
 <body>
     <div class="app-container">
-        <!-- Main Studio Workspace Card (Utilizes full screen) -->
-        <div class="studio-main-card">
+        <!-- Main Studio Workspace Card (Semantic main container) -->
+        <main class="studio-main-card" role="main">
             <!-- Studio Toolbar Header: Controls on Left, Iconic XML Logo on Right -->
-            <div class="editor-toolbar">
+            <div class="editor-toolbar" role="toolbar" aria-label="Editor controls and environment manager">
                 <!-- Left Side: Environment Bar on Top, Buttons & Query Name Below -->
                 <div class="toolbar-content-area">
                     <!-- Row 1: Manage Environment Bar above Buttons -->
@@ -157,12 +244,13 @@
                     </div>
                 </div>
 
-                <!-- Right Side: Iconic 3-Line XML Logo with Light-like Glow -->
-                <div class="brand-logo-xml" title="FetchXML Tester Online">
-                    <span class="xml-line">&lt;<span class="tag-name">fetchXml</span><span class="slash">/</span>&gt;</span>
-                    <span class="xml-line">&lt;<span class="tag-name">tester</span><span class="slash">/</span>&gt;</span>
-                    <span class="xml-line">&lt;<span class="tag-name">online</span><span class="slash">/</span>&gt;</span>
-                </div>
+                <!-- Right Side: Iconic 3-Line XML Logo with Light-like Glow (Semantic H1 for SEO) -->
+                <h1 class="brand-logo-xml" title="FetchXML Tester Online">
+                    <span class="sr-only">FetchXML Tester Online - Dynamics 365 &amp; Dataverse WebAPI Query Runner</span>
+                    <span class="xml-line" aria-hidden="true">&lt;<span class="tag-name">fetchXml</span><span class="slash">/</span>&gt;</span>
+                    <span class="xml-line" aria-hidden="true">&lt;<span class="tag-name">tester</span><span class="slash">/</span>&gt;</span>
+                    <span class="xml-line" aria-hidden="true">&lt;<span class="tag-name">online</span><span class="slash">/</span>&gt;</span>
+                </h1>
             </div>
 
             <!-- CodeMirror Editor Container (Expanded Full Area) -->
@@ -218,7 +306,7 @@
                 <!-- Hidden orgURL input to maintain seamless backward compatibility -->
                 <input type="hidden" id="orgURL" />
             </div>
-        </div>
+        </main>
 
         <!-- Compact Footer -->
         <footer class="custom-footer">
