@@ -696,10 +696,10 @@ h1.brand-logo-xml,
     color: #e9d5ff;
 }
 
-/* Bottom 3-Column Execution Row: Link 25%, Plural 25%, Test Button 50% */
+/* Bottom 3-Column Execution Row: Link 20%, Plural 20%, Test Button 60% */
 .bottom-actions-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr); /* 25% 25% 50% */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 3fr); /* 20% 20% 60% */
     gap: 0.75rem;
     align-items: center;
 }
@@ -1075,7 +1075,7 @@ h1.brand-logo-xml,
    ========================================================================== */
 #toast-container {
     position: fixed;
-    bottom: 24px;
+    bottom: 84px;
     right: 24px;
     display: flex;
     flex-direction: column;
