@@ -1,55 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 html {
   cursor: text;
+  background-color: #ffffff;
+  color: #1e293b;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html[data-theme="dark"] {
+  background-color: #0b111e;
+  color: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  padding: 8px 12px;
 }
 
 .editbox {
-  margin: .4em;
+  margin: 0;
   padding: 0;
-  font-family: monospace;
-  font-size: 10pt;
-  color: black;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: inherit;
+  tab-size: 2;
+  -moz-tab-size: 2;
 }
 
 .editbox p {
   margin: 0;
+  padding: 1px 0;
 }
 
+/* Light Theme Syntax Tokens */
 span.xml-tagname {
-  color: #A0B;
+  color: #7c3aed;
+  font-weight: 600;
 }
 
 span.xml-attribute {
-  color: #281;
+  color: #047857;
 }
 
 span.xml-punctuation {
-  color: black;
+  color: #64748b;
+  font-weight: 500;
 }
 
 span.xml-attname {
-  color: #00F;
+  color: #2563eb;
+  font-weight: 500;
 }
 
 span.xml-comment {
-  color: #A70;
+  color: #94a3b8;
+  font-style: italic;
 }
 
 span.xml-cdata {
-  color: #48A;
+  color: #0284c7;
 }
 
 span.xml-processing {
-  color: #999;
+  color: #64748b;
 }
 
 span.xml-entity {
-  color: #A22;
+  color: #d97706;
 }
 
 span.xml-error {
- color: #F00 !important;
+  color: #dc2626 !important;
+  text-decoration: underline wavy #dc2626;
 }
 
 span.xml-text {
-  color: black;
+  color: #334155;
+}
+
+/* Dark Theme Syntax Tokens */
+html[data-theme="dark"] span.xml-tagname {
+  color: #c084fc;
+}
+
+html[data-theme="dark"] span.xml-attribute {
+  color: #34d399;
+}
+
+html[data-theme="dark"] span.xml-punctuation {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] span.xml-attname {
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] span.xml-comment {
+  color: #64748b;
+  font-style: italic;
+}
+
+html[data-theme="dark"] span.xml-cdata {
+  color: #38bdf8;
+}
+
+html[data-theme="dark"] span.xml-processing {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] span.xml-entity {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] span.xml-error {
+  color: #f87171 !important;
+}
+
+html[data-theme="dark"] span.xml-text {
+  color: #cbd5e1;
+}
+
+/* Selection */
+::selection {
+  background: rgba(124, 58, 237, 0.25);
+}
+
+html[data-theme="dark"] ::selection {
+  background: rgba(192, 132, 252, 0.35);
 }

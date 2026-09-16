@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.playwright-cli/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
