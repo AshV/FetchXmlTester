@@ -160,7 +160,7 @@ html, body {
     border: 0;
 }
 
-/* Iconic 3-Line XML Logo on Right Side of Header (Right-Aligned, Glow on Hover) */
+/* Iconic 3-Line XML Logo on Right Side of Header (Syntax Highlighted to match CodeMirror Editor) */
 h1.brand-logo-xml,
 .brand-logo-xml {
     margin: 0;
@@ -171,8 +171,8 @@ h1.brand-logo-xml,
     text-align: right;
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.45rem;
-    font-weight: 750;
-    line-height: 1.12;
+    font-weight: 650;
+    line-height: 1.15;
     letter-spacing: -0.5px;
     padding: 0.25rem 0.85rem;
     background: transparent;
@@ -187,7 +187,7 @@ h1.brand-logo-xml,
 
 .brand-logo-xml:hover {
     background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.16) 0%, rgba(155, 77, 202, 0.04) 50%, transparent 75%);
-    filter: drop-shadow(0 0 6px rgba(155, 77, 202, 0.45)) drop-shadow(0 0 16px rgba(155, 77, 202, 0.25));
+    filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.45)) drop-shadow(0 0 16px rgba(124, 58, 237, 0.25));
 }
 
 [data-theme="dark"] .brand-logo-xml:hover {
@@ -196,7 +196,7 @@ h1.brand-logo-xml,
 }
 
 .brand-logo-xml .xml-line {
-    color: var(--text-main);
+    color: #64748b;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -204,28 +204,53 @@ h1.brand-logo-xml,
     transition: text-shadow 0.25s ease;
 }
 
-.brand-logo-xml:hover .xml-line {
-    text-shadow: 0 0 12px rgba(155, 77, 202, 0.2);
+[data-theme="dark"] .brand-logo-xml .xml-line {
+    color: #94a3b8;
 }
 
-[data-theme="dark"] .brand-logo-xml:hover .xml-line {
-    text-shadow: 0 0 10px rgba(192, 132, 252, 0.35), 0 0 18px rgba(168, 85, 247, 0.25);
+/* Syntax Highlighting matching CodeMirror Editor (css/xmlcolors.css) */
+.brand-logo-xml .xml-punctuation,
+.brand-logo-xml .punctuation,
+.brand-logo-xml .slash {
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.2s ease, text-shadow 0.25s ease;
 }
 
-.brand-logo-xml .xml-line .tag-name {
-    color: var(--text-main);
-    font-weight: 800;
+.brand-logo-xml .xml-tagname,
+.brand-logo-xml .tag-name {
+    color: #7c3aed;
+    font-weight: 700;
+    transition: color 0.2s ease, text-shadow 0.25s ease;
 }
 
-.brand-logo-xml .xml-line .slash {
-    color: var(--primary);
-    font-weight: 800;
-    margin: 0 1px;
-    transition: text-shadow 0.25s ease;
+/* Dark Theme Syntax Highlighting matching CodeMirror */
+[data-theme="dark"] .brand-logo-xml .xml-punctuation,
+[data-theme="dark"] .brand-logo-xml .punctuation,
+[data-theme="dark"] .brand-logo-xml .slash {
+    color: #94a3b8;
 }
 
-.brand-logo-xml:hover .xml-line .slash {
-    text-shadow: 0 0 8px var(--primary), 0 0 16px rgba(168, 85, 247, 0.75), 0 0 24px rgba(168, 85, 247, 0.5);
+[data-theme="dark"] .brand-logo-xml .xml-tagname,
+[data-theme="dark"] .brand-logo-xml .tag-name {
+    color: #c084fc;
+}
+
+/* Hover glow matching editor syntax */
+.brand-logo-xml:hover .xml-tagname,
+.brand-logo-xml:hover .tag-name {
+    text-shadow: 0 0 8px rgba(124, 58, 237, 0.45), 0 0 16px rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="dark"] .brand-logo-xml:hover .xml-tagname,
+[data-theme="dark"] .brand-logo-xml:hover .tag-name {
+    text-shadow: 0 0 8px rgba(192, 132, 252, 0.6), 0 0 18px rgba(168, 85, 247, 0.4);
+}
+
+.brand-logo-xml:hover .xml-punctuation,
+.brand-logo-xml:hover .punctuation,
+.brand-logo-xml:hover .slash {
+    text-shadow: 0 0 6px rgba(100, 116, 139, 0.35);
 }
 
 /* Right-Hand Toolbar Content Area: Row 1 Environment Bar, Row 2 Query Name & Buttons */
