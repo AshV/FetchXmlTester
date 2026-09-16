@@ -27,7 +27,10 @@ function displayContents(contents) {
     }
 }
 
-document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+const fileInput = document.getElementById('file-input');
+if (fileInput) {
+    fileInput.addEventListener('change', readSingleFile, false);
+}
 
 function loadFromQueryParam() {
     const queryString = window.location.search;

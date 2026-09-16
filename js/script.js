@@ -818,72 +818,84 @@ function fetchXmlOnchange() {
 // =========================================================================
 
 // Primary Execution Button: "Test FetchXML"
-testButton.onclick = function () {
-    fetchXmlOnchange();
-    var message = "";
-    if (!Env.isValidURL(orgURL.value)) {
-        message += "Please select or add a Dataverse environment. ";
-        openEnvModal();
-    }
-    if (!isValidXml) {
-        message += "Please enter valid FetchXML. ";
-    }
-
-    if (message.length === 0) {
-        combine();
-        showToast('Executing query in Dynamics 365 WebAPI...', 'info');
-
-        // Open WebAPI endpoint in new window or tab using active session SSO
-        const win = window.open(finalLink, '_blank');
-        if (!win) {
-            document.querySelector("#finalURI").click();
+if (testButton) {
+    testButton.onclick = function () {
+        fetchXmlOnchange();
+        var message = "";
+        if (!orgURL || !Env.isValidURL(orgURL.value)) {
+            message += "Please select or add a Dataverse environment. ";
+            openEnvModal();
         }
-    } else {
-        showToast(message, 'error');
-    }
-};
+        if (!isValidXml) {
+            message += "Please enter valid FetchXML. ";
+        }
+
+        if (message.length === 0) {
+            combine();
+            showToast('Executing query in Dynamics 365 WebAPI...', 'info');
+
+            // Open WebAPI endpoint in new window or tab using active session SSO
+            const win = window.open(finalLink, '_blank');
+            if (!win) {
+                const finalEl = document.querySelector("#finalURI");
+                if (finalEl) finalEl.click();
+            }
+        } else {
+            showToast(message, 'error');
+        }
+    };
+}
 
 // Organization URL change
-orgURL.onchange = function () {
-    if (orgURL.value.length === 0) return;
-    const cleaned = Env.cleanUrl(orgURL.value);
-    if (Env.isValidURL(cleaned)) {
-        orgURL.value = cleaned;
-        try {
-            const u = new URL(cleaned);
-            let name = u.hostname.split('.')[0];
-            if (name.toLowerCase() === 'www' || name.length <= 1) name = u.hostname;
-            App.orgURLs[name] = cleaned;
-            App.activeOrg = name;
-            Env.save();
-            Env.render();
-        } catch (e) { }
-        combine();
-    } else {
-        showToast("Please enter a valid URL (e.g. https://org.crm.dynamics.com)", 'error');
-    }
-};
+if (orgURL) {
+    orgURL.onchange = function () {
+        if (orgURL.value.length === 0) return;
+        const cleaned = Env.cleanUrl(orgURL.value);
+        if (Env.isValidURL(cleaned)) {
+            orgURL.value = cleaned;
+            try {
+                const u = new URL(cleaned);
+                let name = u.hostname.split('.')[0];
+                if (name.toLowerCase() === 'www' || name.length <= 1) name = u.hostname;
+                App.orgURLs[name] = cleaned;
+                App.activeOrg = name;
+                Env.save();
+                Env.render();
+            } catch (e) { }
+            combine();
+        } else {
+            showToast("Please enter a valid URL (e.g. https://org.crm.dynamics.com)", 'error');
+        }
+    };
+}
 
 // Plural name modified manually
-plural.onchange = function () {
-    pluralName = plural.value;
-    isNameModified = true;
-    combine();
-};
+if (plural) {
+    plural.onchange = function () {
+        pluralName = plural.value;
+        isNameModified = true;
+        combine();
+    };
+}
 
 // Query Name sets page title
-queryName.onkeyup = function () {
-    document.title = queryName.value ? "fX:" + queryName.value : "FetchXml Tester Tool Online";
-};
+if (queryName) {
+    queryName.onkeyup = function () {
+        document.title = queryName.value ? "fX:" + queryName.value : "FetchXml Tester Tool Online";
+    };
+}
 
 // Beautify Button
-document.querySelector('#beautify').addEventListener('click', () => {
-    if (typeof editor === 'undefined') return;
-    var ugly = editor.getCode();
-    var prettyXml = prettifyXml(ugly);
-    editor.setCode(prettyXml);
-    showToast('FetchXML formatted and beautified!', 'success');
-});
+const beautifyBtn = document.querySelector('#beautify');
+if (beautifyBtn) {
+    beautifyBtn.addEventListener('click', () => {
+        if (typeof editor === 'undefined') return;
+        var ugly = editor.getCode();
+        var prettyXml = prettifyXml(ugly);
+        editor.setCode(prettyXml);
+        showToast('FetchXML formatted and beautified!', 'success');
+    });
+}
 
 // File Download Helper
 const downloadToFile = (content, filename, contentType) => {
@@ -898,18 +910,21 @@ const downloadToFile = (content, filename, contentType) => {
 };
 
 // Save As File
-document.querySelector('#save').addEventListener('click', () => {
-    if (typeof editor === 'undefined') return;
-    var fileName = "fetchXml-AshV.xml";
-    if (queryName.value !== null && queryName.value.length > 0) {
-        if (queryName.value.endsWith(".xml") || queryName.value.endsWith(".txt"))
-            fileName = queryName.value;
-        else
-            fileName = "fetchXml-" + queryName.value + ".xml";
-    }
-    downloadToFile(editor.getCode(), fileName, 'text/xml');
-    showToast(`Downloading ${fileName}`, 'info');
-});
+const saveFileBtn = document.querySelector('#save');
+if (saveFileBtn) {
+    saveFileBtn.addEventListener('click', () => {
+        if (typeof editor === 'undefined') return;
+        var fileName = "fetchXml-AshV.xml";
+        if (queryName && queryName.value !== null && queryName.value.length > 0) {
+            if (queryName.value.endsWith(".xml") || queryName.value.endsWith(".txt"))
+                fileName = queryName.value;
+            else
+                fileName = "fetchXml-" + queryName.value + ".xml";
+        }
+        downloadToFile(editor.getCode(), fileName, 'text/xml');
+        showToast(`Downloading ${fileName}`, 'info');
+    });
+}
 
 // Copy Request URI button
 function copyRequestUri() {
