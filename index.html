@@ -131,7 +131,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles/style.css?v=2.1.1" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css?v=2.1.2" />
 </head>
 
 <body>
@@ -190,7 +190,7 @@
                             </div>
 
                             <!-- Beautify XML Button -->
-                            <button id="beautify" class="btn-tool" title="Beautify and format FetchXML code">
+                            <button id="beautify" class="btn-tool" title="Beautify and format FetchXML code (Ctrl+Shift+F)">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <line x1="21" y1="10" x2="3" y2="10"></line>
                                     <line x1="21" y1="6" x2="3" y2="6"></line>
@@ -201,7 +201,7 @@
                             </button>
 
                             <!-- Save to Library (Local Storage) Button -->
-                            <button id="btnSaveLibrary" class="btn-tool btn-tool-accent" onclick="saveQueryToLibrary()" title="Save query to local storage library">
+                            <button id="btnSaveLibrary" class="btn-tool btn-tool-accent" onclick="saveQueryToLibrary()" title="Save query to local storage library (Ctrl+S)">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                                     <polyline points="17 21 17 13 7 13 7 21"></polyline>
@@ -220,8 +220,20 @@
                                 <span id="savedQueriesBadge" class="brand-badge" style="padding: 0 0.35rem; font-size: 0.65rem;">0</span>
                             </button>
 
+                            <!-- Share Link Button -->
+                            <button id="btnShareLink" class="btn-tool" onclick="shareQueryLink()" title="Copy sharable query link (Ctrl+Shift+S)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                                <span>Share</span>
+                            </button>
+
                             <!-- Open File Button -->
-                            <button id="open" class="btn-tool" onclick="loadFile()" title="Open XML file from disk">
+                            <button id="open" class="btn-tool" onclick="loadFile()" title="Open XML file from disk (Ctrl+O)">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                                 </svg>
@@ -416,14 +428,14 @@
     </div>
 
     <!-- Scripts: Plurals Dictionary, Core Script, Clipboard, and Init -->
-    <script src="scripts/plurals.min.js?v=2.1.1"></script>
-    <script src="js/script.js?v=2.1.1"></script>
+    <script src="scripts/plurals.min.js?v=2.1.2"></script>
+    <script src="js/script.js?v=2.1.2"></script>
     <script src="js/clipboard.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var editor = CodeMirror.fromTextArea('fetchXml', {
             height: "100%",
             parserfile: "parsexml.js",
-            stylesheet: "css/xmlcolors.css?v=2.1.1",
+            stylesheet: "css/xmlcolors.css?v=2.1.2",
             path: "js/",
             continuousScanning: 500,
             lineNumbers: true,
@@ -438,7 +450,7 @@
             }
         });
     </script>
-    <script src="js/init.js?v=2.1.1"></script>
+    <script src="js/init.js?v=2.1.2"></script>
 </body>
 
 </html>

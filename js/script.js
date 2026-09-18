@@ -400,13 +400,66 @@ function handleModalAddEnv() {
     }
 }
 
-// Keyboard Escape Closes Modals
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeEnvModal();
-        closeSavedQueriesModal();
-    }
-});
+// =========================================================================
+// Keyboard Shortcuts Manager (Ctrl+Enter, Ctrl+Shift+S, Ctrl+S, Ctrl+O, Ctrl+Shift+F, Ctrl+K, Esc)
+// =========================================================================
+function bindKeyboardShortcuts(targetDoc) {
+    if (!targetDoc) return;
+    targetDoc.addEventListener('keydown', (e) => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const modifier = isMac ? e.metaKey : e.ctrlKey;
+
+        // Ctrl/Cmd + Enter: Test FetchXML
+        if (modifier && e.key === 'Enter') {
+            e.preventDefault();
+            if (testButton) testButton.click();
+            return;
+        }
+
+        // Ctrl/Cmd + Shift + S: Share Query Link
+        if (modifier && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+            e.preventDefault();
+            if (typeof window.shareQueryLink === 'function') window.shareQueryLink();
+            return;
+        }
+
+        // Ctrl/Cmd + Shift + F or Alt + Shift + F: Beautify FetchXML
+        if ((modifier && e.shiftKey && (e.key === 'F' || e.key === 'f')) ||
+            (e.altKey && e.shiftKey && (e.key === 'F' || e.key === 'f'))) {
+            e.preventDefault();
+            if (beautifyBtn) beautifyBtn.click();
+            return;
+        }
+
+        // Ctrl/Cmd + S: Save to Library (prevent default browser page save)
+        if (modifier && !e.shiftKey && (e.key === 's' || e.key === 'S')) {
+            e.preventDefault();
+            saveQueryToLibrary();
+            return;
+        }
+
+        // Ctrl/Cmd + O: Open File (prevent default browser open dialog)
+        if (modifier && !e.shiftKey && (e.key === 'o' || e.key === 'O')) {
+            e.preventDefault();
+            if (typeof loadFile === 'function') loadFile();
+            return;
+        }
+
+        // Ctrl/Cmd + K: Environment Manager Modal
+        if (modifier && !e.shiftKey && (e.key === 'k' || e.key === 'K')) {
+            e.preventDefault();
+            openEnvModal();
+            return;
+        }
+
+        // Escape: Close Modals
+        if (e.key === 'Escape') {
+            closeEnvModal();
+            closeSavedQueriesModal();
+            return;
+        }
+    });
+}
 
 // =========================================================================
 // Saved Queries Library (Local Storage Persistence)
@@ -945,6 +998,46 @@ function copyRequestUri() {
     });
 }
 
+// One-Click Sharable Deep Link Generator (Ctrl+Shift+S)
+window.shareQueryLink = function () {
+    const code = getEditorCode();
+    if (!code || !code.trim()) {
+        showToast('No FetchXML query to share', 'warning');
+        return;
+    }
+
+    const shareUrl = new URL(window.location.href);
+    shareUrl.search = '';
+    shareUrl.hash = '';
+
+    shareUrl.searchParams.set('query', code.trim());
+
+    if (App.activeOrg && App.orgURLs && App.orgURLs[App.activeOrg]) {
+        shareUrl.searchParams.set('env', App.orgURLs[App.activeOrg]);
+    } else if (orgURL && orgURL.value && Env.isValidURL(orgURL.value)) {
+        shareUrl.searchParams.set('env', orgURL.value.trim());
+    }
+
+    if (queryName && queryName.value && queryName.value.trim()) {
+        shareUrl.searchParams.set('name', queryName.value.trim());
+    }
+
+    if (plural && plural.value && plural.value.trim()) {
+        shareUrl.searchParams.set('plural', plural.value.trim());
+    }
+
+    const urlString = shareUrl.toString();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(urlString).then(() => {
+            showToast('Sharable query link copied to clipboard!', 'success');
+        }).catch(() => {
+            prompt('Copy this sharable query link:', urlString);
+        });
+    } else {
+        prompt('Copy this sharable query link:', urlString);
+    }
+};
+
 // Decode Hash Sharing (Legacy Compatibility)
 function decodeUrlHash() {
     var hash = location.hash.split('#');
@@ -971,11 +1064,16 @@ window.addEventListener('DOMContentLoaded', () => {
     SavedQueries.init();
     combine();
 
+    bindKeyboardShortcuts(document);
+
     // Safely wait for CodeMirror initialization
     let retries = 0;
     const waitForEditor = () => {
         if (typeof editor !== 'undefined' && editor && editor.editor) {
             syncEditorTheme(App.theme);
+            if (editor.win && editor.win.document) {
+                bindKeyboardShortcuts(editor.win.document);
+            }
             fetchXmlOnchange();
         } else if (retries < 30) {
             retries++;
